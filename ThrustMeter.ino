@@ -40,7 +40,7 @@ void setup() {
   lcd.print(VERSION_STR_2);
 
   LoadCell.begin();
-  long stabilisingtime = 2000; // tare preciscion can be improved by adding a few seconds of stabilising time
+  long stabilisingtime = 5000; // tare preciscion can be improved by adding a few seconds of stabilising time
   LoadCell.start(stabilisingtime);
   LoadCell.setCalFactor(492.0); // user set calibration factor (float)
 
@@ -76,7 +76,7 @@ void loop() {
   int value1 = debouncer1.read();
   int value2 = debouncer2.read();
 
-  //SNAPSHOT funkcia
+  //SNAPSHOT function
   if (value1 == LOW && snapshot && (millis() > snap_time + 1000)) {
     lcd.setCursor(snap_position, 1);
     lcd.print(String(LoadCell.getData(), 0));
@@ -89,7 +89,7 @@ void loop() {
     snap_time = millis();
   }
 
-  //TARE funkcia
+  //TARE function
   if (value2 == LOW) {
     lcd.clear();
     lcd.setCursor(3, 0);
